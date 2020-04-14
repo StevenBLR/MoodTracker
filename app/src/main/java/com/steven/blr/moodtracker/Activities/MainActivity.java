@@ -1,8 +1,14 @@
-package com.steven.blr.moodtracker;
+package com.steven.blr.moodtracker.Activities;
+
+/**
+ * Created by Steven - on 14/04/2020
+ */
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.steven.blr.moodtracker.R;
 
 import butterknife.ButterKnife;
 
@@ -17,3 +23,4 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
     }
 }
+
