@@ -16,7 +16,7 @@ public class MainFragment extends Fragment
     {
         // Required empty public constructor
     }
-    
+
     public static MainFragment newInstance()
     {
         MainFragment fragment = new MainFragment();
