@@ -1,13 +1,14 @@
 <resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">MoodTracker</string>
+
     <array name="moodNames">
         <item>smiley_disappointed</item>
         <item>smiley_sad</item>
         <item>smiley_normal</item>
         <item>smiley_happy</item>
-        <item>smiley_super-happy</item>
+        <item>smiley_super_happy</item>
     </array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_name">MoodTracker</string>
 </resources>

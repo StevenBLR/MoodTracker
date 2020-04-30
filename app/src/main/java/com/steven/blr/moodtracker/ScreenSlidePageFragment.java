@@ -1,10 +1,13 @@
 package com.steven.blr.moodtracker;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,9 +22,10 @@ public class ScreenSlidePageFragment extends Fragment
     // 1 - Create keys for our Bundle
     private static final String KEY_POSITION="position";
     private static final String KEY_COLOR="color";
+    private static final String KEY_MOOD="moodName";
 
     // 2 - Method that will create a new instance of PageFragment, and add data to its bundle.
-    public static ScreenSlidePageFragment newInstance(int position, int color)
+    public static ScreenSlidePageFragment newInstance(int position, int color, int moodRef)
     {
         // 2.1 Create new fragment
         ScreenSlidePageFragment frag = new ScreenSlidePageFragment();
@@ -30,6 +34,9 @@ public class ScreenSlidePageFragment extends Fragment
         Bundle args = new Bundle();
         args.putInt(KEY_POSITION, position);
         args.putInt(KEY_COLOR, color);
+        args.putInt(KEY_MOOD, moodRef);
+
+
         frag.setArguments(args);
 
         return(frag);
@@ -45,16 +52,19 @@ public class ScreenSlidePageFragment extends Fragment
 
         // 4 - Get widgets to modify from layout
         LinearLayout rootView= (LinearLayout) result.findViewById(R.id.fragment_page_rootview);
-        TextView textView= (TextView) result.findViewById(R.id.fragment_page_title);
+        ImageView imageView= (ImageView) result.findViewById(R.id.mood_smiley);
 
         // 5 - Get data from Bundle (created in method newInstance) / getArguments() is a Fragment function
         int position = getArguments().getInt(KEY_POSITION, -1);
         int color = getArguments().getInt(KEY_COLOR, -1);
+        int moodId = getArguments().getInt(KEY_MOOD, -1);
 
+        Log.d("Fragment", "stored position =" + position);
+        Log.d("Fragment", "store color =" + color);
 
         // 6 - Update widgets with it
         rootView.setBackgroundColor(color);
-        textView.setText("Page numéro "+ position);
+        imageView.setImageResource(moodId);
 
         Log.e(getClass().getSimpleName(), "onCreateView called for fragment number "+position);
 
