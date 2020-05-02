@@ -1,7 +1,5 @@
-package com.steven.blr.moodtracker;
+package com.steven.blr.moodtracker.Fragments;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,9 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.steven.blr.moodtracker.R;
 
 /**
  * Created by Steven - on 21/04/2020
@@ -23,6 +22,7 @@ public class ScreenSlidePageFragment extends Fragment
     private static final String KEY_POSITION="position";
     private static final String KEY_COLOR="color";
     private static final String KEY_MOOD="moodName";
+
 
     // 2 - Method that will create a new instance of PageFragment, and add data to its bundle.
     public static ScreenSlidePageFragment newInstance(int position, int color, int moodRef)

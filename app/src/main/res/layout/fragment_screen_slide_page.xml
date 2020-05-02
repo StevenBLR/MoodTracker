@@ -1,29 +1,54 @@
 <!-- fragment_screen_slide_page.xml -->
-<LinearLayout
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_page_rootview"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.steven.blr.moodtracker.ScreenSlidePageFragment"
+    android:orientation="vertical"
+    tools:context="com.steven.blr.moodtracker.Fragments.ScreenSlidePageFragment"
     android:gravity="center">
-
-
-    <TextView
-        android:id="@+id/fragment_page_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-       <!--
-        android:layout_margin="20dip"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#fff"/>-->
 
     <ImageView
         android:id="@+id/mood_smiley"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.5" />
+
+    <LinearLayout
+        android:id="@+id/buttons_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:minHeight="100dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/history_BT"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_history_black" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <ImageButton
+            android:id="@+id/mood_comment_BT"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
 
 </LinearLayout>

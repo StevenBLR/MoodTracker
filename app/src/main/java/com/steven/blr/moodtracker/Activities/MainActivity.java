@@ -1,12 +1,14 @@
-package com.steven.blr.moodtracker;
+package com.steven.blr.moodtracker.Activities;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.steven.blr.moodtracker.R;
+import com.steven.blr.moodtracker.Adapters.ScreenSlidePageAdapter;
 
 
 public class MainActivity extends FragmentActivity
@@ -14,6 +16,7 @@ public class MainActivity extends FragmentActivity
     private ViewPager2 pager;
     private FragmentStateAdapter pagerAdapter;
     private int[] imgRefs;
+    private int nbFrag = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +28,12 @@ public class MainActivity extends FragmentActivity
         Log.d("MainActivity", "OnCreate");
     }
 
-    private void configureViewPager(){
+    private void configureViewPager()
+    {
         initImageRefs();
         // 1 - Get ViewPager from layout
         pager = findViewById(R.id.activity_main_viewpager);
-        pagerAdapter = new ScreenSlidePageAdapter(this, getResources().getIntArray(R.array.colorPagesViewPager), imgRefs);
+        pagerAdapter = new ScreenSlidePageAdapter(this, getResources().getIntArray(R.array.colorPagesViewPager), imgRefs, nbFrag);
         pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(2);
 
@@ -49,10 +53,8 @@ public class MainActivity extends FragmentActivity
 
     private void initImageRefs()
     {
-        //Log.d("MainActivity", "Pager Width = " + pager.getAdapter().getItemCount());
-
         imgRefs = new int[5];
-
+        // TODO : Restructure
         imgRefs[0] = R.drawable.smiley_sad;
         imgRefs[1] = R.drawable.smiley_disappointed;
         imgRefs[2] = R.drawable.smiley_normal;
