@@ -32,6 +32,8 @@ public class MoodsHistoryActivity extends AppCompatActivity
         initMoodHistory();
     }
 
+
+
     // New Mood
     public void storeNewMood(MoodHistory.Mood newMood, Date moodDate)
     {

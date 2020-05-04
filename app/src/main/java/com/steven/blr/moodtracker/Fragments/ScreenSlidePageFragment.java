@@ -5,12 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
 import com.steven.blr.moodtracker.R;
+
 
 /**
  * Created by Steven - on 21/04/2020
@@ -22,6 +24,9 @@ public class ScreenSlidePageFragment extends Fragment
     private static final String KEY_POSITION="position";
     private static final String KEY_COLOR="color";
     private static final String KEY_MOOD="moodName";
+
+
+
 
 
     // 2 - Method that will create a new instance of PageFragment, and add data to its bundle.
@@ -65,9 +70,6 @@ public class ScreenSlidePageFragment extends Fragment
         // 6 - Update widgets with it
         rootView.setBackgroundColor(color);
         imageView.setImageResource(moodId);
-
-        Log.e(getClass().getSimpleName(), "onCreateView called for fragment number "+position);
-
         return result;
     }
 
