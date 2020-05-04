@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.viewpager2.widget.ViewPager2
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_main_viewpager"
+<LinearLayout
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.viewpager2.widget.ViewPager2>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/activity_main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageButton
+        android:id="@+id/history_BT"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_weight="1"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_history_black" />
+</LinearLayout>
 
