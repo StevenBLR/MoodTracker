@@ -48,6 +48,9 @@ public class MainActivity extends FragmentActivity
                 Log.d("MainActivity", "Click on History BT");
             }
         });
+
+
+
     }
 
     private void configureViewPager()
@@ -59,6 +62,16 @@ public class MainActivity extends FragmentActivity
         pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(3); // Happy mood
 
+        // Listener - Call onPageSelected function when a new page is selected
+        ViewPager2.OnPageChangeCallback listener = new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position)
+            {
+                super.onPageSelected(position);
+                Log.d("MainActivity", "Switch position to " + position);
+            }
+        };
+        pager.registerOnPageChangeCallback(listener);
     }
 
     private void initUI()
@@ -77,6 +90,11 @@ public class MainActivity extends FragmentActivity
             // Otherwise, select the previous step.
             pager.setCurrentItem(pager.getCurrentItem() - 1);
         }
+    }
+
+    private void Dzdad()
+    {
+
     }
 
 
