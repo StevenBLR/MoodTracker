@@ -36,6 +36,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <!-- Exemple constraint weight
     <ImageView
         android:id="@+id/color1"
         android:layout_width="0dp"
@@ -53,7 +55,9 @@
         android:background="@color/colorAccent"
         app:layout_constraintStart_toEndOf="@id/color1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="0.5"/>
+        app:layout_constraintHorizontal_weight="0.5"/>-->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
