@@ -10,15 +10,14 @@ import java.util.Date;
 
 public class MoodHistory
 {
-    public enum Mood {None, Sad, Disappointed, Normal, Happy, SuperHappy}
+    public enum Mood {Sad, Disappointed, Normal, Happy, SuperHappy}
     private Mood mood;
-    private Date creationDate;
+    private String comment;
     private int id;
 
-    public MoodHistory(Mood mood, Date creationDate)
+    public MoodHistory(Mood mood)
     {
         this.mood = mood;
-        this.creationDate = creationDate;
         id = this.hashCode();
         Log.d("MoodHistory", "new Mood History " + id);
     }
@@ -32,4 +31,8 @@ public class MoodHistory
     {
         return mood;
     }
+
+    public void setComment(String newComment) { comment = newComment; }
+
+    public String getComment() { return comment; }
 }

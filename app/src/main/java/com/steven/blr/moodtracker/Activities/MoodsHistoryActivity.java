@@ -12,6 +12,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.List;
 
 public class MoodsHistoryActivity extends AppCompatActivity
@@ -19,8 +21,7 @@ public class MoodsHistoryActivity extends AppCompatActivity
     // UI
     private ListView listView;
 
-    // System
-    private List<MoodHistory> moodsHistory;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

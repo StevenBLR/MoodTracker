@@ -4,12 +4,18 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Dictionary;
+
 import com.steven.blr.moodtracker.Fragments.ScreenSlidePageFragment;
+import com.steven.blr.moodtracker.MoodHistory;
 import com.steven.blr.moodtracker.R;
 import com.steven.blr.moodtracker.Adapters.ScreenSlidePageAdapter;
 
@@ -22,9 +28,13 @@ public class MainActivity extends FragmentActivity
 {
     private ViewPager2 pager;
     private FragmentStateAdapter pagerAdapter;
+
+    // System
     private int[] imgRefs;
     private int nbFrag = 5;
     private static final String BUNDLE_KEY_CURRENT_MOOD = "currentMood";
+    private Dictionary<Date,MoodHistory> keyDateMoodHistory;
+    private SharedPreferences preferences;
 
     // UI
     public ImageButton historyBt;
@@ -32,7 +42,8 @@ public class MainActivity extends FragmentActivity
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUI();
@@ -49,6 +60,14 @@ public class MainActivity extends FragmentActivity
             }
         });
 
+        commentBt.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Log.d("MainActivity", "Click on Comment BT");
+            }
+        });
 
 
     }
@@ -69,6 +88,24 @@ public class MainActivity extends FragmentActivity
             {
                 super.onPageSelected(position);
                 Log.d("MainActivity", "Switch position to " + position);
+                //Bind current mood with current position
+                MoodHistory.Mood currentMood = MoodHistory.Mood.values()[position];
+
+                // Check if a mood is already store for today
+                Date currentDate = Calendar.getInstance().getTime();
+                // If true --> Create new mood with current one
+                if (keyDateMoodHistory.get(currentDate) == null)
+                {
+                    MoodHistory newMH = new MoodHistory(currentMood);
+                    keyDateMoodHistory.put(currentDate, newMH);
+                    Log.d("MainActivity", "Added new mood " + currentMood.toString());
+                }
+                // else --> Modify last mood with current one
+                else
+                {
+                    keyDateMoodHistory.get(currentDate).setMood(currentMood);
+                    Log.d("MainActivity", "Modified today's mood to " + currentMood.toString());
+                }
             }
         };
         pager.registerOnPageChangeCallback(listener);
@@ -92,14 +129,6 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-    private void Dzdad()
-    {
-
-    }
-
-
-
-
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
@@ -108,6 +137,7 @@ public class MainActivity extends FragmentActivity
 
         super.onSaveInstanceState(outState);
     }
+
     private void initImageRefs()
     {
         imgRefs = new int[5];
