@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Dictionary;
+import java.util.Enumeration;
 
 import com.steven.blr.moodtracker.Fragments.ScreenSlidePageFragment;
 import com.steven.blr.moodtracker.MoodHistory;
@@ -33,7 +35,8 @@ public class MainActivity extends FragmentActivity
     private int[] imgRefs;
     private int nbFrag = 5;
     private static final String BUNDLE_KEY_CURRENT_MOOD = "currentMood";
-    private Dictionary<Date,MoodHistory> keyDateMoodHistory;
+    private Dictionary<String, MoodHistory> keyDateMoodHistory;
+    private String currentDate = "";
     private SharedPreferences preferences;
 
     // UI
@@ -46,7 +49,11 @@ public class MainActivity extends FragmentActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inits
         initUI();
+        initDatas();
+
         //3 - Configure ViewPager
         this.configureViewPager();
         Log.d("MainActivity", "OnCreate");
@@ -82,7 +89,8 @@ public class MainActivity extends FragmentActivity
         pager.setCurrentItem(3); // Happy mood
 
         // Listener - Call onPageSelected function when a new page is selected
-        ViewPager2.OnPageChangeCallback listener = new ViewPager2.OnPageChangeCallback() {
+        ViewPager2.OnPageChangeCallback listener = new ViewPager2.OnPageChangeCallback()
+        {
             @Override
             public void onPageSelected(int position)
             {
@@ -91,18 +99,27 @@ public class MainActivity extends FragmentActivity
                 //Bind current mood with current position
                 MoodHistory.Mood currentMood = MoodHistory.Mood.values()[position];
 
-                // Check if a mood is already store for today
-                Date currentDate = Calendar.getInstance().getTime();
+                // Get current date, format it, and store iy
+                Date rawDate = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                String tempdate = df.format(rawDate);
+                // todo : Make it work !!
+                if (currentDate.equals("")  || !currentDate.equals(tempdate)) {
+                    Log.d("MainActivity", currentDate.equals(tempdate));
+                    currentDate = tempdate;
+                    Log.d("MainActivity", "current Date =  " + currentDate + " | formatted Date = " + tempdate);
+                }
+
+
                 // If true --> Create new mood with current one
-                if (keyDateMoodHistory.get(currentDate) == null)
-                {
+                if (keyDateMoodHistory.get(currentDate) == null) {
                     MoodHistory newMH = new MoodHistory(currentMood);
                     keyDateMoodHistory.put(currentDate, newMH);
                     Log.d("MainActivity", "Added new mood " + currentMood.toString());
+                    Log.d("MainActivity", "Item at dict = " + keyDateMoodHistory.get(currentDate));
                 }
                 // else --> Modify last mood with current one
-                else
-                {
+                else {
                     keyDateMoodHistory.get(currentDate).setMood(currentMood);
                     Log.d("MainActivity", "Modified today's mood to " + currentMood.toString());
                 }
@@ -118,7 +135,8 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         if (pager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
@@ -149,6 +167,54 @@ public class MainActivity extends FragmentActivity
         imgRefs[4] = R.drawable.smiley_super_happy;
     }
 
+    private void initDatas()
+    {
+        Log.d("MainActivity", "initDatas");
+        keyDateMoodHistory = new Dictionary<String, MoodHistory>()
+        {
+            @Override
+            public int size()
+            {
+                return 7;
+            }
 
+            @Override
+            public boolean isEmpty()
+            {
+                return false;
+            }
+
+            @Override
+            public Enumeration<String> keys()
+            {
+                return null;
+            }
+
+            @Override
+            public Enumeration<MoodHistory> elements()
+            {
+                return null;
+            }
+
+            @Override
+            public MoodHistory get(Object key)
+            {
+                return null;
+            }
+
+            @Override
+            public MoodHistory put(String key, MoodHistory value)
+            {
+                return null;
+            }
+
+            @Override
+            public MoodHistory remove(Object key)
+            {
+                return null;
+            }
+        };
+
+    }
 
 }
