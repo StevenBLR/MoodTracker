@@ -105,7 +105,6 @@ public class MainActivity extends FragmentActivity
                 String tempdate = df.format(rawDate);
                 // todo : Make it work !!
                 if (currentDate.equals("")  || !currentDate.equals(tempdate)) {
-                    Log.d("MainActivity", currentDate.equals(tempdate));
                     currentDate = tempdate;
                     Log.d("MainActivity", "current Date =  " + currentDate + " | formatted Date = " + tempdate);
                 }
